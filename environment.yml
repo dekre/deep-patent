@@ -1,0 +1,9 @@
+channels:
+  - anaconda
+  - conda-forge
+dependencies:
+  - python=3.9
+  - black=22.10.0
+  - isort=5.10.1
+  - jupyterlab
+  - jupyterlab_code_formatter
