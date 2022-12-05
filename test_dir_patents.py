@@ -5,12 +5,27 @@
 
 import json
 import os
+import pathlib
 
 import dirtorch.nets as nets
 from dirtorch import test_dir
 from dirtorch.datasets.generic import ImageList, ImageListLabels, ImageListLabelsQ
 from dirtorch.utils import common
 from dirtorch.utils.convenient import mkdir
+
+fld = str(pathlib.Path(__file__).parent.resolve())
+if fld.startswith("/vast"):
+    fld = fld.replace("/vast", "")
+
+
+class DeepPatentTest(ImageListLabelsQ):
+    def __init__(self):
+        ImageListLabelsQ.__init__(
+            self,
+            img_list_path=os.path.join(fld, "data/test_db_patent.txt"),
+            query_list_path=os.path.join(fld, "data/test_query_patent.txt"),
+            root=args.dataset,
+        )
 
 
 def load_model(path, iscuda, args):
@@ -120,20 +135,6 @@ if __name__ == "__main__":
 
     """ Define the dataset class
     """
-    import pathlib
-
-    fld = str(pathlib.Path(__file__).parent.parent.resolve())
-    if fld.startswith("/vast"):
-        fld = fld.replace("/vast", "")
-
-    class DeepPatentTest(ImageListLabelsQ):
-        def __init__(self):
-            ImageListLabelsQ.__init__(
-                self,
-                img_list_path=os.path.join(fld, "data/test_db_patent.txt"),
-                query_list_path=os.path.join(fld, "data/test_query_patent.txt"),
-                root=args.dataset,
-            )
 
     args.iscuda = common.torch_set_gpu(args.gpu)
     if args.aqe is not None:

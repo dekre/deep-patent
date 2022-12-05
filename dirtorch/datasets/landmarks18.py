@@ -1,7 +1,8 @@
 import os
-from .generic import ImageListLabels, ImageList
 
-DB_ROOT = os.environ["DB_ROOT"]
+from .generic import ImageList, ImageListLabels
+
+DB_ROOT = os.environ.get("DB_ROOT", ".")
 
 
 class Landmarks18_train(ImageListLabels):

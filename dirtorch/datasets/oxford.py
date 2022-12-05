@@ -1,7 +1,8 @@
 import os
+
 from .generic import ImageListRelevants
 
-DB_ROOT = os.environ["DB_ROOT"]
+DB_ROOT = os.environ.get("DB_ROOT", ".")
 
 
 class Oxford5K(ImageListRelevants):

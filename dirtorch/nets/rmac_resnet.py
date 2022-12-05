@@ -1,7 +1,10 @@
-import pdb
 import torch
-from .backbones.resnet import *
-from .layers.pooling import GeneralizedMeanPooling, GeneralizedMeanPoolingP
+import torch.nn as nn
+import torch.nn.functional as F
+from torch.autograd import Variable
+
+from .backbones.resnet import BasicBlock, Bottleneck, ResNet
+from .layers.pooling import GeneralizedMeanPooling
 
 
 def l2_normalize(x, axis=-1):

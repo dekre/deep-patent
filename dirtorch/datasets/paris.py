@@ -1,7 +1,8 @@
-from .generic import ImageListRelevants
 import os
 
-DB_ROOT = os.environ["DB_ROOT"]
+from .generic import ImageListRelevants
+
+DB_ROOT = os.environ.get("DB_ROOT", ".")
 
 
 class Paris6K(ImageListRelevants):

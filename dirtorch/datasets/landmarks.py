@@ -1,7 +1,8 @@
 import os
+
 from .generic import ImageListLabels
 
-DB_ROOT = os.environ["DB_ROOT"]
+DB_ROOT = os.environ.get("DB_ROOT", ".")
 
 
 class Landmarks_clean(ImageListLabels):

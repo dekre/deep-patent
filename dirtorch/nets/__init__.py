@@ -5,21 +5,21 @@ To list all available architectures, use:
 """
 import os
 import pdb
-import torch
 from collections import OrderedDict
+
+import torch
 
 internal_funcs = set(globals().keys())
 
-from .backbones.resnet import resnet101, resnet50, resnet18, resnet152
+from .backbones.resnet import resnet18, resnet50, resnet101, resnet152
 from .rmac_resnet import resnet18_rmac, resnet50_rmac, resnet101_rmac, resnet152_rmac
 from .rmac_resnet_fpn import (
     resnet18_fpn_rmac,
     resnet50_fpn_rmac,
-    resnet101_fpn_rmac,
     resnet101_fpn0_rmac,
+    resnet101_fpn_rmac,
     resnet152_fpn_rmac,
 )
-
 
 model_names = {
     name

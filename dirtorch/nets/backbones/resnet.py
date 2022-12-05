@@ -1,9 +1,6 @@
-import torch.nn as nn
-import torch
 import math
-import numpy as np
-from torch.autograd import Variable
-import torch.nn.functional as F
+
+import torch.nn as nn
 
 
 def conv3x3(in_planes, out_planes, stride=1):
@@ -121,6 +118,7 @@ class ResNet(nn.Module):
     ):
         nn.Module.__init__(self)
         self.model_name = model_name
+        self.__preprocess = dict()
 
         # default values for a network pre-trained on imagenet
         self.rgb_means = [0.485, 0.456, 0.406]
@@ -172,6 +170,16 @@ class ResNet(nn.Module):
             self.avgpool = nn.AdaptiveAvgPool2d(1)
             self.fc = nn.Linear(512 * block.expansion, fc_out)
             self.fc_name = "fc"
+
+    @property
+    def preprocess(self) -> dict:
+        return self.__preprocess
+
+    @preprocess.setter
+    def preprocess(self, value: dict):
+        if not isinstance(value, dict):
+            raise ValueError("Value has to be a dict.")
+        self.__preprocess = value
 
     def _make_layer(
         self,
@@ -247,7 +255,8 @@ class ResNet(nn.Module):
         assert self.model_name in model_urls, "Unknown model '%s'" % self.model_name
 
         model_dir = "dirtorch/data/models/classification/"
-        import os, stat  # give group permission
+        import os  # give group permission
+        import stat
 
         try:
             os.makedirs(model_dir)

@@ -1,7 +1,7 @@
 import os
 import os.path as osp
 
-DB_ROOT = os.environ["DB_ROOT"]
+DB_ROOT = os.environ.get("DB_ROOT", ".")
 
 
 def download_dataset(dataset):

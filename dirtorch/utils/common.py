@@ -1,11 +1,11 @@
 import os
-import sys
 import pdb
 import shutil
+import sys
 from collections import OrderedDict
+
 import numpy as np
 import sklearn.decomposition
-
 import torch
 import torch.nn.functional as F
 
@@ -62,7 +62,7 @@ def torch_set_gpu(gpus, seed=None, randomize=True):
         gpus = [gpus]
 
     assert gpus, "error: empty gpu list, use --gpu N N ..."
-
+    print(f"{gpus=}")
     cuda = all(gpu >= 0 for gpu in gpus)
 
     if cuda:

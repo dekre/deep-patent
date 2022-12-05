@@ -1,24 +1,23 @@
-import sys
+import hashlib
+import json
 import os
 import os.path as osp
 import pdb
+import pickle as pkl
+import sys
 
-import json
-import tqdm
 import numpy as np
 import torch
 import torch.nn.functional as F
+import tqdm
 
-from dirtorch.utils.convenient import mkdir
-from dirtorch.utils import common
-from dirtorch.utils.common import tonumpy, matmul, pool
-from dirtorch.utils.pytorch_loader import get_loader
-import dirtorch.nets as nets
 import dirtorch.datasets as datasets
 import dirtorch.datasets.downloader as dl
-
-import pickle as pkl
-import hashlib
+import dirtorch.nets as nets
+from dirtorch.utils import common
+from dirtorch.utils.common import matmul, pool, tonumpy
+from dirtorch.utils.convenient import mkdir
+from dirtorch.utils.pytorch_loader import get_loader
 
 
 def expand_descriptors(descs, db=None, alpha=0, k=0):
@@ -135,7 +134,7 @@ def eval_model(
     """
     print("\n>> Evaluation...")
     query_db = db.get_query_db()
-
+    print("query database")
     # extract DB feats
     bdescs = []
     qdescs = []

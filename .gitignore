@@ -2,6 +2,7 @@
 temp/
 tmp/
 db/*
+checkpoints/*
 # keep gitkeep files
 !.gitkeep
 
