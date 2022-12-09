@@ -137,7 +137,7 @@ def compute_similarity_scores(
             pooling=pooling,
             gemp=gemp,
         )
-    if qdescs is None:
+    if bdescs is None:
         bdescs = __compute_features_for_images(
             image_list=db_images,
             net=net,
